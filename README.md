@@ -1,4 +1,4 @@
-# Custom Color Palette — Supernote Plugin
+# For Developers - Custom Color Palette — Supernote Plugin
 
 A plugin for the Supernote NOTE app that provides a custom color picker for Ink Pen, Needle Point Pen, Shapes, and Highlighter content. Colors are applied to lasso-selected elements and are stored in the `.note` file, appearing in full color when exported to PDF or viewed on a color screen.
 
@@ -71,6 +71,9 @@ The plugin registers two toolbar buttons in the NOTE app:
 Tapping either button opens the color picker full-screen. The user selects a tab, picks a color, then taps **Apply … to Selection**. The plugin calls `getLassoElements()`, sets `element.color` to the chosen ARGB integer, writes back via `modifyElements()`, and reloads the page.
 
 ## SDK note
+
+## For Users
+
 
 The public `sn-plugin-lib` API does not expose a way to pre-set the active pen color before drawing. This plugin recolors **already-drawn, lasso-selected** elements. Colors are stored in the `.note` file and render correctly on color displays.
 
