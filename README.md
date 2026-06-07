@@ -1,76 +1,79 @@
-Custom Color Palette — Supernote Plugin
+# Custom Color Palette — Supernote Plugin
 
-A plugin for the Supernote NOTE app that provides a custom color picker for Ink Pen, Needle Point Pen, Calligraphy Pen, and Marker.  Colors are applied to pen elements and are stored in the .note or doc.mark file, appearing in full color when exported to PDF or viewed on a color screen.
+A plugin for the Supernote NOTE app that provides a custom color picker for Ink Pen, Needle Point Pen, Shapes, and Highlighter content. Colors are applied to lasso-selected elements and are stored in the `.note` file, appearing in full color when exported to PDF or viewed on a color screen.
 
-Color palettes
+## Color palettes
 
-Ink Pen · Needle Point Pen · Calligraphy Pen · Marker
-Name	      Hex	                Note
-Light Grey  Supernote Standard
-Dark Grey   Supernote Standard 
-Black	      #231F20	            default
-Blue	      #0033A0	
-Red	        #BF062F	
-Pink	      #CD6FBD	
-Orange	    #FF8200	
-Green	      #007B5F	
-Lime	      #00FF00	
-Purple	    #763AC7	
+### Ink Pen · Needle Point Pen · Shapes
+| Name   | Hex      | Note        |
+|--------|----------|-------------|
+| Black  | #231F20  | **default** |
+| Blue   | #0033A0  |             |
+| Green  | #007B5F  |             |
+| Lime   | #00FF00  |             |
+| Orange | #FF8200  |             |
+| Pink   | #CD6FBD  |             |
+| Purple | #763AC7  |             |
+| Red    | #BF062F  |             |
 
+### Highlighter
+| Name   | Hex      | Note        |
+|--------|----------|-------------|
+| Blue   | #008BD1  |             |
+| Gray   | #808080  | **default** |
+| Green  | #00E240  |             |
+| Orange | #FFA442  |             |
+| Pink   | #FF4E8B  |             |
+| Purple | #9B3CA2  |             |
+| Yellow | #F6F000  |             |
 
-Highlighter - Uses Marker Pen as highlighter
-Name	              Hex	                 Note
-White               Supernote Standard
-Highlighter Pink	  #FF4E8B	             default
-Highlighter Yellow	#F6F000	
-Highlighter Orange	#FFA442	
-Highlighter Blue	  #008BD1	
-Highlighter Green	  #00E240	
-Highlighter Purple	#9B3CA2	
-
-
-Requirements
+## Requirements
 
 - Node.js 18 or later
-- Android SDK with adb in your PATH
+- Android SDK with `adb` in your PATH
 - PowerShell (Windows) or Bash (macOS / Linux)
 - React Native 0.79.2 (pinned — other versions may be incompatible with PluginHost)
 
-Build
+## Build
 
+```bash
 npm install
 bash buildPlugin.sh
+```
 
+Output: `build/outputs/CustomColorPalette.snplg`
 
-Output: build/outputs/CustomColorPalette.snplg
+## Deploy
 
-Deploy
-
+```bash
 adb push build/outputs/CustomColorPalette.snplg /storage/emulated/0/MyStyle/
+```
 
+Then on the device: **Settings → Apps → Plugins → Install**.
 
-Then on the device: Settings → Apps → Plugins → Install.
+## Debug
 
-Debug
-
+```bash
 adb logcat -c
 # trigger an action on device, then:
 adb logcat -d -s ReactNativeJS:V
+```
 
-
-How it works
+## How it works
 
 The plugin registers two toolbar buttons in the NOTE app:
-Button	Appears when…
-Colors	Always (main toolbar)
-Recolor	Lasso selection active
 
-Tapping either button opens the color picker full-screen. The user selects a tab, picks a color, then taps Apply … to Selection. The plugin calls getLassoElements(), sets element.color to the chosen ARGB integer, writes back via modifyElements(), and reloads the page.
+| Button    | Appears when…          |
+|-----------|------------------------|
+| Colors    | Always (main toolbar)  |
+| Recolor   | Lasso selection active |
 
-SDK note
+Tapping either button opens the color picker full-screen. The user selects a tab, picks a color, then taps **Apply … to Selection**. The plugin calls `getLassoElements()`, sets `element.color` to the chosen ARGB integer, writes back via `modifyElements()`, and reloads the page.
 
-The public sn-plugin-lib API does not expose a way to pre-set the active pen color before drawing. This plugin recolors already-drawn, lasso-selected elements. Colors are stored in the .note file and render correctly on color displays.
+## SDK note
 
-License
+The public `sn-plugin-lib` API does not expose a way to pre-set the active pen color before drawing. This plugin recolors **already-drawn, lasso-selected** elements. Colors are stored in the `.note` file and render correctly on color displays.
+
+## License
 
 MIT
