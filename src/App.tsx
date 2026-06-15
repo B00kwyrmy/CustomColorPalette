@@ -51,7 +51,6 @@ const highlight = (name: string, hex: string): ColorEntry =>
 
 // Ink / pen colours — used by Ink Pen, Needle Point, Calligraphy, Marker.
 const INK_COLORS: ColorEntry[] = [
-  ink('White',      '#FFFFFF'),
   ink('Light Grey', '#C9C9C9'),
   ink('Dark Grey',  '#9D9D9D'),
   ink('Black',      '#231F20'),
@@ -65,12 +64,18 @@ const INK_COLORS: ColorEntry[] = [
 ];
 
 // Highlighter colours — light washes meant to show script through them.
+// Lt/Dk Grey intentionally REUSE the grey ink hexes: wash-vs-opaque is decided by
+// pen type, so the same hex reads opaque on an ink pen and translucent on the
+// marker. (Resized markers also need these hexes in ExportColorPDF's
+// HIGHLIGHTER_HEXES — added in phase 2.)
 const HIGHLIGHT_COLORS: ColorEntry[] = [
+  highlight('Lt Grey', '#C9C9C9'),
+  highlight('Dk Grey', '#9D9D9D'),
   highlight('Pink',   '#F2C6DE'),
-  highlight('Yellow', '#FAEDCB'),
   highlight('Orange', '#F7D9C4'),
-  highlight('Blue',   '#C6DEF1'),
+  highlight('Yellow', '#FAEDCB'),
   highlight('Green',  '#C9E4DE'),
+  highlight('Blue',   '#C6DEF1'),
   highlight('Purple', '#DBCDF0'),
 ];
 
@@ -87,9 +92,9 @@ const LEFT_COLUMN: ColorEntry[] = [
 ].map(byLabel);
 
 const RIGHT_COLUMN: ColorEntry[] = [
-  'White',
-  'Highlighter Pink', 'Highlighter Yellow', 'Highlighter Orange',
-  'Highlighter Blue', 'Highlighter Green', 'Highlighter Purple',
+  'Highlighter Lt Grey', 'Highlighter Dk Grey',
+  'Highlighter Pink', 'Highlighter Orange', 'Highlighter Yellow',
+  'Highlighter Green', 'Highlighter Blue', 'Highlighter Purple',
 ].map(byLabel);
 
 type Mode = 'picker' | 'lasso';
