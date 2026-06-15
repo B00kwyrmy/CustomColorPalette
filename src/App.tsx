@@ -71,12 +71,12 @@ const INK_COLORS: ColorEntry[] = [
 const HIGHLIGHT_COLORS: ColorEntry[] = [
   highlight('Lt Grey', '#C9C9C9'),
   highlight('Dk Grey', '#9D9D9D'),
-  highlight('Pink',   '#F2C6DE'),
-  highlight('Orange', '#F7D9C4'),
-  highlight('Yellow', '#FAEDCB'),
-  highlight('Green',  '#C9E4DE'),
-  highlight('Blue',   '#C6DEF1'),
-  highlight('Purple', '#DBCDF0'),
+  highlight('Pink',   '#FF6FB8'),
+  highlight('Orange', '#FF9A3D'),
+  highlight('Yellow', '#FFD400'),
+  highlight('Green',  '#5FD0A0'),
+  highlight('Blue',   '#5BB0EE'),
+  highlight('Purple', '#A77DEA'),
 ];
 
 // Single combined list shown in both the picker and the recolor panel.
